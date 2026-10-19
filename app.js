@@ -1,6 +1,6 @@
 'use strict';
 const people = [
- ['hoang','Hữu Hoàng'],['binh','Thanh Bình'],['xuan-kien','Xuân Kiên'],['hai-my-2','Đinh cao khánh'],['trung','Cao Trung'],['le-thi-thu-hang','Lê Thị Thu Hằng'],['nguyen-thi-thuy-duong','Nguyễn Thị Thùy Dương'],['truong-thi-mai','Trương Thị Mai'],['son','Hồng Sơn'],['manh','Đinh Mạnh']
+ ['hoang','Hữu Hoàng'],['binh','Thanh Bình'],['xuan-kien','Xuân Kiên'],['hai-my-2','Đinh cao khánh'],['trung','Cao Trung'],['le-thi-thu-hang','Lê Thị Thu Hằng'],['nguyen-thi-thuy-duong','Nguyễn Thị Thùy Dương'],['truong-thi-mai','Trương Thị Mai'],['son','Hồng Sơn'],['manh','Đinh Mạnh'],['tai','Thái Tài']
 ].map(([id,name],index)=>({id,name,index,photo:`./assets/people/${id}.webp`}));
 const $=id=>document.getElementById(id), normalize=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase().trim();
 const palette=[['rose','#95546d','#efb1c0'],['peach','#a96580','#f5c6cd'],['lilac','#984467','#eca6bf'],['cream','#a36380','#efb8cb']];
