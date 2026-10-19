@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Một bó hoa, dành tặng bạn · 20.10</title>
-  <meta name="description" content="Hai mươi sáu bông hồng, mỗi người một bông. Một bó hoa và những lời chúc dành tặng ngày Phụ nữ Việt Nam 20.10.">
+  <meta name="description" content="Một bó hoa và những lời chúc dành tặng ngày Phụ nữ Việt Nam 20.10. Mỗi người một bông hồng, mỗi lần mở một lời chúc mới.">
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="./assets/fonts/NotoSans-Regular.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="./style.css">
+  <script src="./bouquet-layout.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
 <body>
@@ -21,7 +22,7 @@
     <section class="invitation" aria-labelledby="page-title">
       <p class="occasion"><span>20.10</span><i></i> NGÀY PHỤ NỮ VIỆT NAM</p>
       <h1 id="page-title">Một bó hoa,<br><em>dành tặng bạn.</em></h1>
-      <p class="intro">Hai mươi sáu bông hồng, mỗi người một bông.<br>Mỗi lần mở, một lời chúc mới dành cho bạn.</p>
+      <p class="intro"><span id="flower-count">Mỗi người một bông hồng.</span><br>Mỗi lần mở, một lời chúc mới dành cho bạn.</p>
       <p class="invitation-note">Từ những người đồng nghiệp,<br>gửi bạn một ngày thật vui và nhiều điều tốt đẹp.</p>
       <div class="search-panel">
         <label for="name-search">Bạn tìm bông hoa của mình nhé</label>
@@ -34,7 +35,7 @@
     <section class="garden" aria-labelledby="garden-title">
       <div class="garden-heading"><div><p class="eyebrow">MỘT BÓ HỒNG SOPHIA · 20.10</p><h2 id="garden-title">Chạm một bông hồng,<em> mở một lời chúc.</em></h2></div><span class="garden-seal" aria-hidden="true">for<br><em>you</em></span></div>
       <p id="result-status" class="result-status" role="status" aria-live="polite">Mỗi lần mở hoa, một lời chúc mới dành cho bạn.</p>
-      <div class="bouquet-art" id="bouquet-art"><img class="bouquet-wrapping wrap-back" src="./assets/flowers/wrap-back.svg" alt="" width="600" height="680" aria-hidden="true"><div class="flower-grid" id="flower-grid" role="group" aria-label="Bó hoa gồm 26 bông hồng Sophia"></div><img class="bouquet-wrapping wrap-front" src="./assets/flowers/wrap-front.svg" alt="" width="600" height="680" aria-hidden="true"><span class="bouquet-star star-one" aria-hidden="true">✧</span><span class="bouquet-star star-two" aria-hidden="true">✧</span><span class="bouquet-star star-three" aria-hidden="true">✦</span></div>
+      <div class="bouquet-art" id="bouquet-art"><img class="bouquet-wrapping wrap-back" src="./assets/flowers/wrap-back.svg" alt="" width="600" height="680" aria-hidden="true"><div class="flower-grid" id="flower-grid" role="group" aria-label="Bó hoa hồng Sophia"></div><img class="bouquet-wrapping wrap-front" src="./assets/flowers/wrap-front.svg" alt="" width="600" height="680" aria-hidden="true"><span class="bouquet-star star-one" aria-hidden="true">✧</span><span class="bouquet-star star-two" aria-hidden="true">✧</span><span class="bouquet-star star-three" aria-hidden="true">✦</span></div>
       <div class="empty-garden" id="empty-garden" hidden><h3>Chưa tìm thấy bông hoa này.</h3><p>Bạn thử gõ tên ngắn hơn hoặc bỏ dấu nhé.</p><button type="button" id="empty-reset">Thử tìm lại</button></div>
       <button type="button" class="reset-garden" id="reset-garden" hidden>← Ngắm lại cả bó hoa</button>
       <div class="garden-ground" aria-hidden="true"><span></span><i>mỗi người một vẻ, cùng làm nên những điều đẹp đẽ</i><span></span></div>

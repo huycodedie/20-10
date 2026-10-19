@@ -38,3 +38,6 @@ h1{font:400 clamp(43px,4.2vw,59px)/1.4 var(--serif);letter-spacing:-2.6px;color:
 body.no-motion *,body.no-motion *:before,body.no-motion *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}body.no-motion .ambient,body.no-motion .celebration,body.no-motion .bouquet-star{display:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.ambient,.celebration,.bouquet-star{display:none}}
 .wish-loading{min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px;color:#a38588;text-align:center;font:italic 13px/2 var(--serif)}.wish-loading>span{font:38px Georgia,serif;color:#c79ba4;animation:twinkle 2s ease-in-out infinite}.wish-error{padding:35px 0;font:13px/2 var(--serif);color:#9a7f7f}.wish-error button{min-height:44px;margin-top:18px;border:1px solid #d2b9bd;border-radius:99px;padding:10px 18px;background:#fffaf2;color:#9c6c7d;font:11px var(--sans)}
+
+/* Stems follow the computed flower positions and stay behind the petals. */
+.bouquet-stems{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;fill:none;stroke:#82977d;stroke-width:2.8;stroke-linecap:round}

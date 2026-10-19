@@ -7,17 +7,36 @@ const palette=[['rose','#95546d','#efb1c0'],['peach','#a96580','#f5c6cd'],['lila
 let stored={}; try{stored=JSON.parse(localStorage.getItem('bouquet-state')||'{}');}catch{}
 const seen=new Set(Array.isArray(stored.seen)?stored.seen:[]); let motion=stored.motion!==false, active=null, previousFocus=null, matches=[],selected=-1;
 function persist(){try{localStorage.setItem('bouquet-state',JSON.stringify({seen:[...seen],motion}));}catch{}}
-let row=0;
+const flowerLayout = createBouquetLayout(people.length);
+const flowerGrid = $('flower-grid');
+flowerGrid.setAttribute('aria-label',`Bó hoa gồm ${people.length} bông hồng Sophia`);
+$('flower-count').textContent = people.length === 1 ? 'Một bông hồng, gửi riêng đến bạn.' : people.length ? `${people.length} bông hồng, mỗi người một bông.` : 'Bó hoa đang được chuẩn bị.';
+const stemLayer = document.createElementNS('http://www.w3.org/2000/svg','svg');
+stemLayer.setAttribute('viewBox','0 0 600 680');
+stemLayer.setAttribute('class','bouquet-stems');
+stemLayer.setAttribute('aria-hidden','true');
+flowerGrid.before(stemLayer);
 people.forEach(p=>{
-  const i=p.index; row=i<4?0:i<9?1:i<15?2:i<21?3:4;
-  const starts=[0,4,9,15,21],lefts=[30.5,24,17.5,17.5,24], tops=[84,150,216,282,348];
+  const i=p.index, position=flowerLayout[i];
+  const stem=document.createElementNS('http://www.w3.org/2000/svg','path');
+  stem.setAttribute('d',`M${position.x} ${position.y} Q${position.x} 410 304 589`);
+  stemLayer.append(stem);
   const [flower,ink,tint]=palette[i%4]; const button=document.createElement('button');
   button.type='button';button.className='flower'+(seen.has(p.id)?' is-seen':'');button.dataset.person=p.id;
   button.setAttribute('aria-haspopup','dialog');button.setAttribute('aria-controls','wish-dialog');button.setAttribute('aria-label',`Mở bông hồng số ${i+1}`);
-  button.style.cssText=`--left:${lefts[row]+13*(i-starts[row])}%;--top:${tops[row]/680*100}%;--size:${(120+i%3*2)/600*100}%;--turn:${(i*19)%48-24}deg;--layer:${row+3};--flower-ink:${ink};--flower-tint:${tint};--grow-delay:${i*.04}s`;
+  button.style.cssText=`--left:${position.x/600*100}%;--top:${position.y/680*100}%;--size:${position.size/600*100}%;--turn:${position.turn}deg;--layer:3;--flower-ink:${ink};--flower-tint:${tint};--grow-delay:${Math.min(i*.04,.6)}s`;
   button.innerHTML=`<span class="flower-head"><img class="flower-petals" src="./assets/flowers/${flower}.svg" alt="" width="160" height="160" decoding="async"><span class="flower-glint" aria-hidden="true">✧</span><span class="flower-seen" aria-hidden="true">✓</span></span>`;
   button.addEventListener('click',()=>openWish(p));p.button=button;$('flower-grid').append(button);
 });
+if (!people.length) {
+  $('bouquet-art').hidden=true;
+  $('name-search').disabled=true;
+  $('result-status').textContent='';
+  $('empty-garden').hidden=false;
+  $('empty-garden').querySelector('h3').textContent='Bó hoa đang được chuẩn bị.';
+  $('empty-garden').querySelector('p').textContent='Những lời chúc sẽ sớm được gửi đến bạn.';
+  $('empty-reset').hidden=true;
+}
 const themes=['Những ngày thêm tự tin','Một khoảng trời bình yên','Niềm vui trong những điều nhỏ','Dành cho những ước mơ','Luôn được yêu thương','Rực rỡ theo cách riêng'];
 const openings=[
  'Bông hồng này gửi bạn một chút vững lòng trước những điều mới. Mong mỗi lựa chọn đều được lắng nghe, mỗi ý tưởng đều có cơ hội và mỗi cố gắng đều được tôn trọng.',
